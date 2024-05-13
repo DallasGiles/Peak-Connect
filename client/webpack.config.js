@@ -25,13 +25,20 @@ module.exports = {
       }
     ]
   },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })
   ],
   devServer: {
-    contentBase: './dist',
-    open: true
+    static: {
+      directory: path.resolve(__dirname, 'dist')
+    },
+    open: true,
+    hot: true,
   }
 };
+
