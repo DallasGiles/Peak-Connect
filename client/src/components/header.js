@@ -1,15 +1,11 @@
 import React from 'react';
+import '../styles/style.css';
 
 function Header({ setContent }) {
   return (
     <header>
       <nav>
-        <ul>
-          <li><button onClick={() => setContent('Home')}>Home</button></li>
-          <li><button onClick={() => setContent('Hiking')}>Hiking</button></li>
-          <li><button onClick={() => setContent('Skiing')}>Skiing</button></li>
-          <li><button onClick={() => setContent('Climbing')}>Climbing</button></li>
-        </ul>
+        <h1 className='title'> Peak Connect</h1>
       </nav>
     </header>
   );
