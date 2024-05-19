@@ -7,17 +7,20 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
+  resolve: {
+    alias: {
+      components: path.resolve(__dirname, 'src/components/'),
+      pages: path.resolve(__dirname, 'src/pages/'),
+      styles: path.resolve(__dirname, 'src/styles/')
+    },
+    extensions: ['.js', '.jsx']
+  },
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env', '@babel/preset-react']
-          }
-        }
+        use: 'babel-loader'
       },
       {
         test: /\.css$/,
@@ -25,20 +28,18 @@ module.exports = {
       }
     ]
   },
-  resolve: {
-    extensions: ['.js', '.jsx']
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: './public/index.html'
     })
   ],
   devServer: {
-    static: {
-      directory: path.resolve(__dirname, 'dist')
-    },
+    static: path.resolve(__dirname, 'dist'),
     open: true,
-    hot: true,
+    hot: true
   }
 };
+
+
+
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Home from './pages/home.js';
+import Forum from './pages/forum.js';
 
 function App() {
   const [content, setContent] = useState('Home');
@@ -14,7 +16,7 @@ function App() {
       case 'Climbing':
         return <h1>Climbing Content</h1>;
       default:
-        return <h1>Welcome to Peak Connect</h1>;
+        return <Home />;
     }
   };
 
@@ -28,4 +30,5 @@ function App() {
 }
 
 export default App;
+
 
