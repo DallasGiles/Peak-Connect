@@ -22,7 +22,6 @@ function App() {
 
   return (
     <div>
-      <Header setContent={setContent} />
       <main>{renderContent()}</main>
       <Footer />
     </div>

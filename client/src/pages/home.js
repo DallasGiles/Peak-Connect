@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Register from 'components/register'; // Using alias
 import Header from 'components/Header'; // Using alias
-import 'styles/style.css'; // Using alias
+import '/Users/dallas/personal-projects/peak-connect/client/public/styles/style.css'; // Using alias
 
 function Home() {
   const [content, setContent] = useState('Home');
