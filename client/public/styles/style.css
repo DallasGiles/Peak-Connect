@@ -13,19 +13,20 @@ body {
   .nav-list {
     list-style-type: none;
     padding: 0;
-    display: flex;
-  }
-  
-  .nav-item {
+    display: relative;
     margin-right: 1rem;
   }
   
-  .nav-item a {
+  .nav-item {
+    float: right;
+  }
+  
+  .nav-list a {
     color: white;
     text-decoration: none;
   }
   
-  .nav-item a:hover {
+  .nav-list a:hover {
     text-decoration: underline;
   }
   nav ul {
@@ -57,7 +58,22 @@ body {
 }
 .register-button{
   text-align: center;
+  float: right;
+  margin-left: 15px;
+  border-radius: 20px;
+  border: 2px solid #73AD21;
+  padding: 8px;
+  background-color: #333;
+  color: white;
 }
+.login-button{
+    float: right;
+    border-radius: 20px;
+    padding: 8px;
+  border: 2px solid ;
+  background-color: #333;
+  color: white;
+  }
 /* src/components/RegisterForm.css */
 .login-body {
     font-family: Arial, sans-serif;
@@ -123,3 +139,5 @@ body {
   .login-form p a:hover {
     text-decoration: underline;
   }
+  
+  

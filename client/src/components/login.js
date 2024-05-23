@@ -1,5 +1,20 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+
 function login(){
+
+        const [formData, setFormData] = useState({
+          name: '',
+          email: '',
+        });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: value,
+        }));
+      };
 
 return (
     <div className='login-body'>
@@ -18,7 +33,7 @@ return (
       <button type="submit">Log In</button>
     </form>
     <p><a href="#">Forgot your password?</a></p>
-    <p><a href="/register">Don't have an account? Sign up</a></p>
+    <p><Link to="/register">No account? Create one here.</Link></p>
     </div>
     </div>
     </div>

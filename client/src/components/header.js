@@ -1,18 +1,19 @@
-// src/components/Header.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '/Users/dallas/personal-projects/peak-connect/client/public/styles/style.css'; // Ensure this path is correct
+import 'styles/style.css';
 
 function Header() {
   return (
     <header className='header'>
       <nav>
         <ul className='nav-list'>
-          <li className='nav-item'><Link to="/">Home</Link></li>
-          <li className='nav-item'><Link to="/hiking">Hiking</Link></li>
-          <li className='nav-item'><Link to="/skiing">Skiing</Link></li>
-          <li className='nav-item'><Link to="/climbing">Climbing</Link></li>
-          <li className='nav-item'><Link to="/forum">Forum</Link></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/hiking">Hiking</Link></li>
+          <li><Link to="/skiing">Skiing</Link></li>
+          <li><Link to="/climbing">Climbing</Link></li>
+          <li><Link to="/forum">Forum</Link></li>
+          <li className='nav-item'><Link to="/register">Register</Link></li>
+          <li className='nav-item'><Link to="/login">Login</Link></li>
         </ul>
       </nav>
     </header>
@@ -20,5 +21,8 @@ function Header() {
 }
 
 export default Header;
+
+
+
 
 
