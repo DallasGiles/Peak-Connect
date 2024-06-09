@@ -70,28 +70,41 @@ app.post('/register', async (req, res) => {
     }
   });
 
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    console.log('Received login request:', { email, password });
-
-    const [users] = await sequelize.query(
-      'SELECT * FROM users WHERE email = $1',
-      {
-        bind: [email],
-        type: sequelize.QueryTypes.SELECT,
+  app.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      return res.status(400).send('Email and password are required');
+    }
+  
+    try {
+      console.log('Received login request:', { email, password });
+  
+      // Query to find the user by email
+      const users = await sequelize.query(
+        'SELECT * FROM users WHERE email = $1',
+        {
+          bind: [email],
+          type: sequelize.QueryTypes.SELECT,
+        }
+      );
+  
+      console.log('Query result:', users);
+  
+      if (!users || users.length === 0) {
+        console.log('User not found');
+        return res.status(401).send('Invalid credentials');
       }
-    );
-
-    console.log('Query result:', users);
-
-    if (users.length > 0) {
+  
       const user = users[0];
       console.log('User found:', user);
-
+  
+      // Log the plain text password and the hashed password for debugging
+      console.log('Plain text password:', password);
+      console.log('Hashed password from database:', user.password);
+  
       const validPassword = await bcrypt.compare(password, user.password);
       console.log('Password validation result:', validPassword);
-
+  
       if (validPassword) {
         const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
         console.log('Generated token:', token);
@@ -100,15 +113,11 @@ app.post('/login', async (req, res) => {
         console.log('Invalid password');
         return res.status(401).send('Invalid credentials');
       }
-    } else {
-      console.log('User not found');
-      return res.status(401).send('Invalid credentials');
+    } catch (error) {
+      console.error('Error during login:', error);
+      return res.status(500).send('Server error');
     }
-  } catch (error) {
-    console.error('Error during login:', error);
-    return res.status(500).send('Server error');
-  }
-});
+  });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
